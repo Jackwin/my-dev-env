@@ -104,50 +104,7 @@ source $ZSH/oh-my-zsh.sh
 alias 1="cd .."
 alias 2="cd ../../"
 alias 3="cd ../../../"
-alias dw="cd /data/chunjie/workspace"
-alias lib="cd /data/chunjie/workspace/br100/llvm-project-brcc/mlir/lib"
-alias inc="cd /data/chunjie/workspace/br100/llvm-project-brcc/mlir/include/mlir"
 
-# ProGraML 
-export PATH=/home/chunjie/.local/opt/programl/bin:$PATH
-export LD_LIBRARY_PATH=/home/chunjie/.local/opt/programl/lib:$LD_LIBRARY_PATH
-# anaconda
-export PATH=/home/chunjie/anaconda3/bin:$PATH
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH=/home/${USER}/.nvim-linux64/bin:$PATH
+source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
-PATH=$PATH:~/workspace/mlir/verilator/ext/bin:~/workspace/mlir/circt/build/bin:~/.local/bin:~/workspace/mlir/llvm-project/build/bin
-
-
-# virtualenv settings
-#PYTHONPATH=$PYTHONPATH:/home/chunjie/env/python3/lib/python3.6/site-packages:/home/chunjie/env/python3/bin/python
-PYTHONPATH=$PYTHONPATH:/home/chunjie/env/python3/lib/python3.7/site-packages
-
-
-# MARA
-#export BUILD_DIR=/home/chunjie/workspace/MARA/third-party/llvm-project/llvm-build
-#export PREFIX=/home/chunjie/workspace/MARA/third-party/llvm-project/llvm-build
-
-# MANGO
-export BUILD_DIR=/data/chunjie/workspace/br100/llvm-project-forMLIR/llvm-build
-export PREFIX=/data/chunjie/workspace/br100/llvm-project-forMLIR/llvm-build
-
-export PATH=$PATH:$BUILD_DIR/bin
-
-# SUPA
-export SUPA_PATH=/home/chunjie/workspace/br100/supa
-export BRCC_PATH=/data/chunjie/workspace/br100/llvm-project/build
-export BESU_PATH=/home/chunjie/workspace/br100/BESU
-export LD_LIBRARY_PATH=$BESU_PATH/lib:$LD_LIBRARY_PATH
-
-#TVM 
-export TVM_HOME=/data/chunjie/workspace/opensource/HASCO/src/tvm
-export PYTHONPATH=$TVM_HOME/python:${PYTHONPATH}
-#Ax
-export AX_HOME=/data/chunjie/workspace/opensource/HASCO/src/Ax
-export PYTHONPATH=$AX_HOME:${PYTHONPATH}
-#RISCV
-export PATH=$PATH:/opt/riscv/bin:/opt/riscv/riscv64-unknown-elf/bin:/data/chunjie/workspace/opensource/riscv-isa-sim/build
-#dtc
-export PATH=$PATH:/home/chunjie/tools/dtc-1.6.1
