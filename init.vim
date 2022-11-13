@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer:
 "       Amir Salihefendic — @amix3k
-"
+
 " Awesome_version:
 "       Get this config, nice color schemes and lots of plugins!
 "
@@ -34,9 +34,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/vundle
 call plug#begin('~/.vim/plugged')
-"call vundle#begin()
 
 Plug 'VundleVim/Vundle.vim'
 
@@ -52,27 +50,35 @@ Plug 'bling/vim-airline'
 " coc
 Plug 'neoclide/coc.nvim',{'branch':'release'}
 
+" color theme
 Plug 'fatih/molokai'
 
+" auto-pair
+Plug 'jiangmiao/auto-pairs'
+
+" C++ highlight
+Plug 'octol/vim-cpp-enhanced-highlight'
+
+" clang-format
+Plug 'rhysd/vim-clang-format' 
+
+" ctrl-p
+Plug 'ctrlpvim/ctrlp.vim'
+
+" markdown
+Plug 'preservim/vim-markdown'
+
+" 
 " All of your Plugins must be added before the following line
-"call vundle#end()            " required
 call plug#end()
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 " Config the tagbar
 "let g:tagbar_ctags_bin='ctags'   
-let g:tagbar_width=30              
+let g:tagbar_width=20              
 let g:tagbar_left=1                
 let g:tagbar_map_openfold = "zv"
 let g:tagbar_autofocus=1
@@ -82,7 +88,7 @@ nnoremap <silent> <F3> :TagbarToggle<CR>
 
 " Config the nerdtree
 let NERDTreeWinPos='right'
-let NERDTreeWinSize=30 
+let NERDTreeWinSize=20 
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 map <F2> :NERDTreeToggle<CR>
@@ -92,8 +98,38 @@ let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
 
 " Ignore the vim version warning
-"let g:coc_disable_startup_warning = 1
+let g:coc_disable_startup_warning = 1
 
+" Config the clang-format
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : 2,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "ColumnLimit" : 100,
+            \ "Standard" : "C++14"}
+" Config ctrl-p
+let g:ctrlp_map = '<leader>p'
+let g:ctrlp_cmd = 'CtrlP'
+map <leader>f :CtrlPMRU<CR>
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=15
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+let g:clang_format#style_options
 
 " use <tab> for trigger completion and navigate to the next complete item
  function! CheckBackspace() abort
@@ -214,7 +250,7 @@ set foldcolumn=1
 syntax enable
 
 " molokai
-let g:rehash256 = 1
+" let g:rehash256 = 1
 let g:molokai_original = 1
 
 " Enable 256 colors palette in Gnome Terminal
@@ -223,12 +259,12 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-   " colorscheme desert
-    colorscheme molokai
+    colorscheme desert
+   "  colorscheme molokai
 catch
 endtry
 
-set background=dark
+set background=light
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -245,6 +281,12 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 set nu
+augroup relative_numbser
+    autocmd!
+    autocmd InsertEnter * :set norelativenumber
+    autocmd InsertLeave * :set relativenumber
+augroup END
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -263,9 +305,9 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
 
 " Linebreak on 500 characters
 set lbr

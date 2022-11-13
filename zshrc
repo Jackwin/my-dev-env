@@ -108,3 +108,5 @@ alias 3="cd ../../../"
 export PATH=/home/${USER}/.nvim-linux64/bin:$PATH
 source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+
+

@@ -5,7 +5,7 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-NVIM_VERSION=v0.7.2
+NVIM_VERSION=v0.8.0
 
 function probe_sw {
 	if [ ! "$(command -v $1)" ]; then
@@ -20,17 +20,19 @@ probe_sw zsh
 if [ $? -eq 0 ]; then
 	echo "install zsh"
 fi
-
+export HTTP_PROXY="http://10.50.3.5:18080" HTTPS_PROXY="http://10.50.3.5:18080" ALL_PROXY="http://10.50.3.5:18080" http_proxy="http://10.50.3.5:18080" https_proxy="http://10.50.3.5:18080" all_proxy="http://10.50.3.5:18080"
 bash ./oh-my-zsh-install.sh -y
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_HOME:-~/.oh-my-zsh/}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_HOME:-~/.oh-my-zsh/}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_HOME:-~/.oh-my-zsh/}/plugins/zsh-syntax-highlighting
 
 
 cp ./zshrc ~/.zshrc
 cp ./tmux.conf ~/.tmux.conf
 
-exec /bin/zsh
+echo "hello"
+#exec /bin/zsh
 
+echo "hello"
 # install nodejs >= 14.14
 #sudo curl -sL install-node.vercel.app/lts | sudo zsh
 # install vim
@@ -43,7 +45,7 @@ probe_sw nodejs
 if [ $? -eq 0 ]; then
 	echo "${BLUE}----------- install nodejs -------------"
 	sudo apt install -y nodejs
-  wget "https://nodejs.org/dist/v16.17.0/node-v16.17.0.tar.gz -O nodejs.tar.xz"
+  wget https://nodejs.org/dist/v16.17.0/node-v16.17.0.tar.gz -O nodejs.tar.gz
   tar -xvf nodejs.tar.xz
   cd node-v16.17.0
   ./configure --prefix=/usr/local/nodejs
@@ -79,10 +81,13 @@ mkdir -p /home/${USER}/.local/share/nvim/site/autoload
 cp plug.vim  /home/${USER}/.local/share/nvim/site/autoload/
 
 cp ./init.vim /home/${USER}/.config/nvim/
-ln -s /home/${USER}/.vimrc /home/${USER}/.config/nvim/init.vim
+ln -s /home/${USER}/.config/nvim/init.vim /home/${USER}/.vimrc
 
 mkdir -p /home/${USER}/.config/nvim
 #ln -s /home/${USER}/.vim /home/${USER}/.config/nvim
 mkdir -p /home/${USER}/.vim/plugged
 cp plug.vim /home/${USER}/.vim/plugged/
 exit
+
+#open c/C++ file and CocCommand clangd.install
+
