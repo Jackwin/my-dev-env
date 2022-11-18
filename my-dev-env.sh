@@ -9,7 +9,7 @@ NVIM_VERSION=v0.8.0
 
 function probe_sw {
 	if [ ! "$(command -v $1)" ]; then
-		echo "${BLUE}Info: $1 is not installed." >&2
+		echo "${BLUE}Info: $1 is not installed. apt-get install zsh" >&2
 		return 0
 	else
 		return 1
@@ -20,7 +20,7 @@ probe_sw zsh
 if [ $? -eq 0 ]; then
 	echo "install zsh"
 fi
-export HTTP_PROXY="http://10.50.3.5:18080" HTTPS_PROXY="http://10.50.3.5:18080" ALL_PROXY="http://10.50.3.5:18080" http_proxy="http://10.50.3.5:18080" https_proxy="http://10.50.3.5:18080" all_proxy="http://10.50.3.5:18080"
+
 bash ./oh-my-zsh-install.sh -y
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_HOME:-~/.oh-my-zsh/}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_HOME:-~/.oh-my-zsh/}/plugins/zsh-syntax-highlighting
@@ -83,7 +83,7 @@ cp plug.vim  /home/${USER}/.local/share/nvim/site/autoload/
 cp ./init.vim /home/${USER}/.config/nvim/
 ln -s /home/${USER}/.config/nvim/init.vim /home/${USER}/.vimrc
 
-mkdir -p /home/${USER}/.config/nvim
+#mkdir -p /home/${USER}/.config/nvim
 #ln -s /home/${USER}/.vim /home/${USER}/.config/nvim
 mkdir -p /home/${USER}/.vim/plugged
 cp plug.vim /home/${USER}/.vim/plugged/
