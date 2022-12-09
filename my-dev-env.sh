@@ -7,6 +7,8 @@ NC='\033[0m'
 
 NVIM_VERSION=v0.8.0
 
+CONFIG_PATH="/home/${USER}/.config"
+
 function probe_sw {
 	if [ ! "$(command -v $1)" ]; then
 		echo "${BLUE}Info: $1 is not installed. apt-get install zsh" >&2
@@ -29,10 +31,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_HOME:-~
 cp ./zshrc ~/.zshrc
 cp ./tmux.conf ~/.tmux.conf
 
-echo "hello"
-#exec /bin/zsh
-
-echo "hello"
 # install nodejs >= 14.14
 #sudo curl -sL install-node.vercel.app/lts | sudo zsh
 # install vim
@@ -76,9 +74,17 @@ else
 	echo "Error: Download nvim. Please download again."
 fi
 
+if [ ! -d "$CONFIG_PATH" ]; then
+  mkdir -p $CONIFG_PATH/nvim
+fi
 
 mkdir -p /home/${USER}/.local/share/nvim/site/autoload
 cp plug.vim  /home/${USER}/.local/share/nvim/site/autoload/
+
+#backup the vimrc
+if [ ! -d "/home/${USER}/.vimrc" ]; then
+  mv /home/${USER}/.vimrc /home/${USER}/.vimrc.bck
+fi
 
 cp ./init.vim /home/${USER}/.config/nvim/
 ln -s /home/${USER}/.config/nvim/init.vim /home/${USER}/.vimrc
@@ -87,7 +93,6 @@ ln -s /home/${USER}/.config/nvim/init.vim /home/${USER}/.vimrc
 #ln -s /home/${USER}/.vim /home/${USER}/.config/nvim
 mkdir -p /home/${USER}/.vim/plugged
 cp plug.vim /home/${USER}/.vim/plugged/
-exit
 
 #open c/C++ file and CocCommand clangd.install
 
