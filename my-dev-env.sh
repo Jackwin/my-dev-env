@@ -43,9 +43,9 @@ probe_sw nodejs
 if [ $? -eq 0 ]; then
 	echo "${BLUE}----------- install nodejs -------------"
 	sudo apt install -y nodejs
-  wget https://nodejs.org/dist/v16.17.0/node-v16.17.0.tar.gz -O nodejs.tar.gz
-  tar -xvf nodejs.tar.xz
-  cd node-v16.17.0
+  wget https://nodejs.org/dist/v14.15.1/node-v14.15.1.tar.gz
+  tar -xvf node-v14.15.1.tar.gz
+  cd node-v14.15.1
   ./configure --prefix=/usr/local/nodejs
   make -j $nproc
   sudo make install
@@ -75,7 +75,7 @@ else
 fi
 
 if [ ! -d "$CONFIG_PATH" ]; then
-  mkdir -p $CONIFG_PATH/nvim
+  mkdir -p $CONFIG_PATH/nvim
 fi
 
 mkdir -p /home/${USER}/.local/share/nvim/site/autoload
